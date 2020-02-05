@@ -13,6 +13,8 @@ services:
             - '4200:4200'
         volumes:
             - './src/nimn-front-app/.:/home/node/app'
+        networks:
+            - my-network
 
 networks:
   my-network:
