@@ -3,7 +3,24 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  nodejs_api_host: "http://10.94.1.76:3000/",
+
+  nodejs_api_route: {
+    user: {
+      login: "users/login",
+      get_a_user_by_id: "users/"
+    },
+    module: {
+
+    },
+    note: {
+
+    },
+    session: {
+
+    }
+  }
 };
 
 /*

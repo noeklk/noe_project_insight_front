@@ -9,6 +9,7 @@ import { UserComponent } from "./component/user/user.component";
 import { ModuleComponent } from "./component/module/module.component";
 import { SessionComponent } from "./component/session/session.component";
 import { NoteComponent } from "./component/note/note.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NoteComponent } from "./component/note/note.component";
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
