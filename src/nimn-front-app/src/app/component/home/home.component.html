@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div *ngIf="user.pseudo">
+    <p>Bonjour {{ user.pseudo }}</p>
+    <ul>
+        <li>{{ user.nom }}</li>
+        <li>{{ user.pseudo }}</li>
+    </ul>
+</div>
+
+
+

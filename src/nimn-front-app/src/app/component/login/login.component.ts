@@ -1,3 +1,4 @@
+import { HomeService } from "./../../service/home.service";
 import { UserService } from "./../../service/user.service";
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/service/auth.service";
@@ -15,7 +16,8 @@ import { LoginModel } from "src/app/model/user/login";
 export class LoginComponent implements OnInit {
   form;
   userDto = new UserDto();
-  constructor(private fb: FormBuilder, private myRoute: Router, private auth: AuthService, private userService: UserService) {
+  constructor(private fb: FormBuilder, private myRoute: Router, private auth: AuthService, private userService: UserService,
+              private home: HomeService) {
     this.form = fb.group({
       pseudo: ["", [Validators.required]],
       password: ["", Validators.required]
@@ -32,11 +34,13 @@ export class LoginComponent implements OnInit {
 
       this.userService.UserLogin(this.userDto).then((res: HttpResponse<LoginModel>) => {
         const { token } = res.body;
-        this.auth.SendToken(token);
-        window.localStorage.setItem("userId", res.body.user.id);
+        const { id } = res.body.user;
+
+        this.auth.SetToken(token);
+        this.home.SetUserId(id);
+
         this.myRoute.navigate(["home"]);
         console.log("Connecté!");
-
       }).catch((e: HttpErrorResponse) => {
         console.log(e);
         alert(`${e.error.message}`);

@@ -8,11 +8,11 @@ import { Component, OnInit } from "@angular/core";
 })
 export class NavComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
-  isLoggedIn = false;
-  ngOnInit() {
-    // spinner on
-    this.isLoggedIn = this.auth.HasValidToken();
+  constructor(public auth: AuthService) {
   }
 
+  ngOnInit() {
+
+
+  }
 }

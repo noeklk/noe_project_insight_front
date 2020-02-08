@@ -1,3 +1,6 @@
+import { UserService } from "./../../service/user.service";
+import { UserDto } from "src/app/dto/user";
+import { HomeService } from "./../../service/home.service";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -6,10 +9,18 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  user = new UserDto();
 
-  constructor() { }
+  constructor(private home: HomeService, private userService: UserService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const userId = await this.home.GetUserId();
+
+    this.user = await this.userService.GetAUserById(userId).then((res) => {
+      return res.body;
+    }).catch((e) => {
+      throw e;
+    });
   }
 
 }

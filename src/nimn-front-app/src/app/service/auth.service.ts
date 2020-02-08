@@ -1,3 +1,4 @@
+import { HomeService } from "./home.service";
 import { MessageModel } from "./../model/message";
 import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
@@ -11,20 +12,25 @@ export class AuthService {
   private _tokenCheckUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.token_check}`;
   private _tokenName = "accessToken";
 
-  constructor(private myRoute: Router, private http: HttpClient) { }
+  public isLoggedIn = false;
+
+  constructor(private myRoute: Router, private http: HttpClient, private home: HomeService) { }
+
+  GenerateHeader(): HttpHeaders {
+    return new HttpHeaders({
+      Authorization: this.GetToken()
+    });
+  }
 
   CheckToken(): Promise<HttpResponse<MessageModel>> {
     console.log(this._tokenCheckUrl);
-    const headers = new HttpHeaders({
-      Authorization: this.GetToken()
-    });
 
-    const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers, observe: "response" }).toPromise();
+    const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers: this.GenerateHeader(), observe: "response" }).toPromise();
 
     return res;
   }
 
-  SendToken(token: string) {
+  SetToken(token: string) {
     localStorage.setItem(this._tokenName, token);
   }
 
@@ -36,22 +42,29 @@ export class AuthService {
     return this.GetToken() != null;
   }
 
-  HasValidToken(): boolean {
-    if (this.HasToken()) {
-      console.log("yes, has token");
-      this.CheckToken().then((res: HttpResponse<MessageModel>) => {
-        return true;
-      }).catch((error: HttpErrorResponse) => {
-        return false;
-      });
-    } else {
-      console.log("no, has no token");
-      return false;
-    }
+  HasValidToken(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (!this.HasToken()) {
+        this.myRoute.navigate(["login"]);
+        console.log("no, you dont have any token, maybe log first :) ?");
+      } else {
+        this.CheckToken().then((res: HttpResponse<MessageModel>) => {
+          console.log("nice you have a valid token, come on in !");
+          this.isLoggedIn = true;
+          return resolve(true);
+        }).catch((error: HttpErrorResponse) => {
+          this.myRoute.navigate(["login"]);
+          console.log("what are you doing here ?");
+          return reject(false);
+        });
+      }
+    });
   }
 
   Logout() {
     localStorage.removeItem(this._tokenName);
+    localStorage.removeItem(this.home.userIdName);
+    this.isLoggedIn = false;
     this.myRoute.navigate(["login"]);
   }
 }
