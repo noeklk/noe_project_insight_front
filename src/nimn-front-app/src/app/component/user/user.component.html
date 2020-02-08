@@ -1,1 +1,8 @@
-<p>user works!</p>
+
+<div *ngIf="!logged">
+    <input placeholder="pseudo" type="text" [(ngModel)]="user.pseudo">
+    <input placeholder="password" type="password" [(ngModel)]="user.password">
+    <button (click)="UserLogin()">Login</button>
+</div>
+
+<!-- REACTIVE FORM PLZ -->

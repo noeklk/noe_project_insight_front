@@ -9,7 +9,8 @@ import { UserComponent } from "./component/user/user.component";
 import { ModuleComponent } from "./component/module/module.component";
 import { SessionComponent } from "./component/session/session.component";
 import { NoteComponent } from "./component/note/note.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from "@angular/common/http";
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

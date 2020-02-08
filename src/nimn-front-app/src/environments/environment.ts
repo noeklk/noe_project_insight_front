@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  nodejs_api_host: "http://10.94.1.76:3000/",
+  nodejs_api_host: `http://${window.location.hostname}:3000/`,
 
   nodejs_api_route: {
     user: {
-      login: "users/login",
+      login: "users/login/",
       get_a_user_by_id: "users/"
     },
     module: {

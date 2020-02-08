@@ -1,4 +1,5 @@
-export class ModuleModel {
+export class ModuleDto {
+  public _id: string;
   public nom_module: string;
   public id_intervenant: string;
   public id_session: string;

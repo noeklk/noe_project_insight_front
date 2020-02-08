@@ -1,7 +1,8 @@
+import { LoginModel } from "./../../model/user/login";
 import { UserService } from "./../../service/user.service";
 import { Component, OnInit } from "@angular/core";
-import { UserModel } from "../../model/user";
-import { HttpResponse } from "@angular/common/http";
+import { UserDto } from "../../dto/user";
+import { HttpResponse, HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: "app-user",
@@ -9,27 +10,36 @@ import { HttpResponse } from "@angular/common/http";
   styleUrls: ["./user.component.scss"]
 })
 export class UserComponent implements OnInit {
-
+  userId = "N/A";
+  logged = false;
+  user = new UserDto();
   constructor(private userService: UserService) { }
 
   async ngOnInit() {
-    const new_user = new UserModel();
-
-    new_user.pseudo = "admin";
-    new_user.password = "admin";
-
-    const login = await this.userService.UserLogin(new_user).then((res: HttpResponse<JSON>) => {
-      return res;
-    });
-
-    console.log(login);
-    console.log(login.body._id);
-
-    const user = await this.userService.GetAUserById(login.body._id).then((res: HttpResponse<JSON>) => {
-      return res;
-    });
-
-    console.log(user);
+    // const user = await this.userService.GetAUserById(this.userId).then((res: HttpResponse<UserModel>) => {
+    //   return res;
+    // }).catch((e: HttpErrorResponse) => {
+    //   console.log(e);
+    //   alert(`${e.error.message}`);
+    // });
   }
 
+  UserLogin() {
+    const login = this.userService.UserLogin(this.user).then((res: HttpResponse<LoginModel>) => {
+      const { token } = res.body;
+      window.localStorage.setItem("accessToken", token);
+      this.userId = res.body.user.id;
+      this.logged = true;
+      alert("Connecté");
+    }).catch((e: HttpErrorResponse) => {
+      console.log(e);
+      alert(`${e.error.message}`);
+    });
+
+    return login;
+  }
+
+  UserSignup(user: UserDto) {
+
+  }
 }

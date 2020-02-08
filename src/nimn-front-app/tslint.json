@@ -2,7 +2,7 @@
   "extends": "tslint:recommended",
   "rules": {
     "variable-name": {
-      "options": ["allow-snake-case"]
+      "options": ["allow-snake-case", "allow-leading-underscore"]
     },
     "array-type": false,
     "arrow-parens": false,
