@@ -24,20 +24,21 @@ export class UserComponent implements OnInit {
     // });
   }
 
-  UserLogin() {
-    const login = this.userService.UserLogin(this.user).then((res: HttpResponse<LoginModel>) => {
-      const { token } = res.body;
-      window.localStorage.setItem("accessToken", token);
-      this.userId = res.body.user.id;
-      this.logged = true;
-      alert("Connecté");
-    }).catch((e: HttpErrorResponse) => {
-      console.log(e);
-      alert(`${e.error.message}`);
-    });
+  // UserLogin() {
+  //   const login = this.userService.UserLogin(this.user).then((res: HttpResponse<LoginModel>) => {
+  //     const { token } = res.body;
+  //     window.localStorage.setItem("accessToken", token);
+  //     this.userId = res.body.user.id;
+  //     window.localStorage.setItem("userId", this.userId);
+  //     this.logged = true;
+  //     alert("Connecté");
+  //   }).catch((e: HttpErrorResponse) => {
+  //     console.log(e);
+  //     alert(`${e.error.message}`);
+  //   });
 
-    return login;
-  }
+  //   return login;
+  // }
 
   UserSignup(user: UserDto) {
 

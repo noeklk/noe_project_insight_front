@@ -1,0 +1,9 @@
+<p color="primary">
+    <button  routerLink="/home">Home</button>
+    <button  *ngIf="!isLoggedIn" routerLink="/register">Register</button>
+    <button  *ngIf="!isLoggedIn" routerLink="/login">Login</button>
+    <button  *ngIf="isLoggedIn" (click)="auth.Logout()">Logout</button>
+    
+  </p>
+
+  <p>{{ isLoggedIn }}</p>

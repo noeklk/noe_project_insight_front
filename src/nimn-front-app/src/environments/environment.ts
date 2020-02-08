@@ -19,7 +19,8 @@ export const environment = {
     },
     session: {
 
-    }
+    },
+    token_check: "token/"
   }
 };
 
