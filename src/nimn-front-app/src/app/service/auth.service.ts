@@ -53,7 +53,7 @@ export class AuthService {
           this.isLoggedIn = true;
           return resolve(true);
         }).catch((error: HttpErrorResponse) => {
-          console.log("your token is no valid anymore, please reconnect");
+          console.log("your token is not valid anymore, please reconnect");
           this.Logout();
           return reject(false);
         });

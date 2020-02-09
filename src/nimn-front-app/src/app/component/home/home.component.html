@@ -9,10 +9,10 @@
 
 <div *ngIf="user.role=='admin'">
     <mat-button-toggle-group (change)="view=group.value" #group="matButtonToggleGroup">
-        <mat-button-toggle  value="session">Sessions</mat-button-toggle>
-        <mat-button-toggle value="module">Modules</mat-button-toggle>
-        <mat-button-toggle value="note">Notes</mat-button-toggle>
-        <mat-button-toggle value="user">Utilisateurs</mat-button-toggle>
+        <mat-button-toggle value="session" (click)="GetAllSessions()">Sessions</mat-button-toggle>
+        <mat-button-toggle value="module" (click)="GetAllModules()">Modules</mat-button-toggle>
+        <mat-button-toggle value="note" (click)="GetAllNotes()">Notes</mat-button-toggle>
+        <mat-button-toggle value="user" (click)="GetAllUsers()">Utilisateurs</mat-button-toggle>
      </mat-button-toggle-group>
  
     <app-session *ngIf="view=='session'" [sessions]=sessions></app-session>

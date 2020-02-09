@@ -21,6 +21,7 @@ export class ModuleComponent implements OnInit {
       alert(await this.moduleService.DeleteAModuleById(id).then((res) => {
         return res.body.message;
       }).catch((e) => {
+        alert(e.error.message);
         throw e;
       }));
 

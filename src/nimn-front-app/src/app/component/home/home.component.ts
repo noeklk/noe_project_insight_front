@@ -26,15 +26,47 @@ export class HomeComponent implements OnInit {
 
   view: string;
 
-  sessionToggle = false;
-  moduleToggle = false;
-  noteToggle = false;
-
   constructor(private home: HomeService,
     private userService: UserService,
     private sessionService: SessionService,
     private moduleService: ModuleService,
     private noteService: NoteService) { }
+
+  async GetAllSessions() {
+    this.sessions = await this.sessionService.GetAllSessions().then((res) => {
+      return res.body;
+    }).catch((e) => {
+      alert(e.error.message);
+      return null;
+    });
+  }
+
+  async GetAllModules() {
+    this.modules = await this.moduleService.GetAllModules().then((res) => {
+      return res.body;
+    }).catch((e) => {
+      alert(e.error.message);
+      return null;
+    });
+  }
+
+  async GetAllNotes() {
+    this.notes = await this.noteService.GetAllNotes().then((res) => {
+      return res.body;
+    }).catch((e) => {
+      alert(e.error.message);
+      return null;
+    });
+  }
+
+  async GetAllUsers() {
+    this.users = await this.userService.GetAllUsers().then((res) => {
+      return res.body;
+    }).catch((e) => {
+      alert(e.error.message);
+      return null;
+    });
+  }
 
   async ngOnInit() {
     const userId = await this.home.GetUserId();
@@ -54,31 +86,15 @@ export class HomeComponent implements OnInit {
     });
 
     if (await admin) {
-      this.sessions = await this.sessionService.GetAllSessions().then((res) => {
-        return res.body;
-      }).catch((e) => {
-        throw e;
-      });
+      // await this.GetAllSessions();
 
-      this.modules = await this.moduleService.GetAllModules().then((res) => {
-        return res.body;
-      }).catch((e) => {
-        throw e;
-      });
+      // await this.GetAllModules();
 
-      this.notes = await this.noteService.GetAllNotes().then((res) => {
-        return res.body;
-      }).catch((e) => {
-        throw e;
-      });
+      // await this.GetAllNotes();
 
-      this.users = await this.userService.GetAllUsers().then((res) => {
-        return res.body;
-      }).catch((e) => {
-        throw e;
-      });
+      // await this.GetAllUsers();
     } else {
-      console.log("guest");
+      console.log("guest area");
     }
   }
 }

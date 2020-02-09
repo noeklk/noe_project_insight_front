@@ -10,17 +10,20 @@ export const environment = {
     user: {
       login: "users/login/",
       get_a_user_by_id: "users/",
-      get_all_users: "users/"
+      get_all_users: "users/",
+      delete_a_user_by_id: "users/"
     },
     module: {
       get_all_modules: "modules/",
       delete_a_module_by_id: "modules/"
     },
     note: {
-      get_all_notes: "notes/"
+      get_all_notes: "notes/",
+      delete_a_note_by_id: "notes/"
     },
     session: {
-      get_all_sessions: "sessions/"
+      get_all_sessions: "sessions/",
+      delete_a_session_by_id: "sessions/"
     },
     token_check: "token/"
   }
