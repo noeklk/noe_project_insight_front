@@ -9,16 +9,17 @@ export const environment = {
   nodejs_api_route: {
     user: {
       login: "users/login/",
-      get_a_user_by_id: "users/"
+      get_a_user_by_id: "users/",
+      get_all_users: "users/"
     },
     module: {
-
+      get_all_modules: "modules/"
     },
     note: {
-
+      get_all_notes: "notes/"
     },
     session: {
-
+      get_all_sessions: "sessions/"
     },
     token_check: "token/"
   }

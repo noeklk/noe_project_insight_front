@@ -53,8 +53,8 @@ export class AuthService {
           this.isLoggedIn = true;
           return resolve(true);
         }).catch((error: HttpErrorResponse) => {
-          this.myRoute.navigate(["login"]);
-          console.log("what are you doing here ?");
+          console.log("what are you doing here ? please login again :)");
+          this.Logout();
           return reject(false);
         });
       }
