@@ -1,3 +1,10 @@
+---
+title: "[DATE]: [PULL_REQUEST NAME]"
+name: Pull Request
+about: Créer une pull request
+labels: PR
+---
+
 <!--- Provide a general summary of your changes in the Title above -->
 
 ## Description

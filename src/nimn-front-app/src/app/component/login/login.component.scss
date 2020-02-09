@@ -1,0 +1,23 @@
+.container {
+  background-color: #fff;
+  width: auto;
+  min-width: 150px;
+  max-width: 300px;
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  border-radius: 2.5%;
+
+  .example-form {
+    padding: 15px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+
+    .example-full-width {
+      width: 100%;
+    }
+  }
+} 
+  

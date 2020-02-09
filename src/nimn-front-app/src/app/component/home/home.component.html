@@ -1,0 +1,49 @@
+<mat-card class="example-card" *ngIf="user">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ user.pseudo }}</mat-card-title>
+      <mat-card-subtitle>{{ user.prenom }} {{ user.nom }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ user.role }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+        <div *ngIf="isAdmin">
+            <button mat-button (click)="CreateASession()">Créer une session</button>
+            <button mat-button>Créer un module</button>
+            <button mat-button>Créer une note</button>
+            <button mat-button>Créer un utilisateur</button>
+        </div>
+        <div *ngIf="user.role=='etudiant'">
+            <button mat-button>Créer une note</button>
+        </div>
+    </mat-card-actions>
+</mat-card>
+
+<br />
+
+<div class="control-area">
+    <div *ngIf="isAdmin && user">
+        <mat-button-toggle-group (change)="view=group.value" #group="matButtonToggleGroup">
+            <mat-button-toggle value="session" (click)="GetAllSessions()">Sessions</mat-button-toggle>
+            <mat-button-toggle value="module" (click)="GetAllModules()">Modules</mat-button-toggle>
+            <mat-button-toggle value="note" (click)="GetAllNotes()">Notes</mat-button-toggle>
+            <mat-button-toggle value="user" (click)="GetAllUsers()">Utilisateurs</mat-button-toggle>
+        </mat-button-toggle-group>
+    
+        <app-session *ngIf="view=='session'" [sessions]=sessions></app-session>
+        <app-module *ngIf="view=='module'" [modules]=modules></app-module>
+        <app-note *ngIf="view=='note'" [notes]=notes></app-note>
+        <app-user *ngIf="view=='user'" [users]=users></app-user>
+    </div>
+
+    <div *ngIf="!isAdmin && user">
+        <mat-button-toggle-group (change)="view=group.value" #group="matButtonToggleGroup">
+            <mat-button-toggle value="etudiant_note" (click)="GetAllNotesByStudentId()">Notes</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        <app-note *ngIf="view=='etudiant_note'" [notes]=etudiant_notes></app-note>
+
+    </div>
+</div>
+
+
