@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private home: HomeService) {
     this.form = fb.group({
       pseudo: ["", [Validators.required]],
-      password: [""]
+      password: ["", [Validators.required]]
     });
   }
 
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.valid) {
       this.userDto = this.form.value;
-      console.log(this.userDto);
 
       this.userService.UserLogin(this.userDto).then((res: HttpResponse<LoginModel>) => {
         const { token } = res.body;

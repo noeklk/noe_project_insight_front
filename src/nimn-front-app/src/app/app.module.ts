@@ -18,6 +18,12 @@ import { LoginComponent } from "./component/login/login.component";
 import { SignupComponent } from "./component/signup/signup.component";
 import { HomeComponent } from "./component/home/home.component";
 import { AuthService } from "./service/auth.service";
+import { SessionEditComponent } from "./component/session/session-edit/session-edit.component";
+import { SessionCreateComponent } from "./component/session/session-create/session-create.component";
+import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from "@angular/material";
+import { MomentUtcDateAdapter } from "./helper/moment-utc-date-adapter";
+import { APP_DATE_FORMATS } from "./app.config";
+import { DatePipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -29,7 +35,9 @@ import { AuthService } from "./service/auth.service";
     NavComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    SessionEditComponent,
+    SessionCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,13 @@ import { AuthService } from "./service/auth.service";
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, AuthGuard, UserService],
+  entryComponents: [SessionEditComponent, SessionCreateComponent],
+  providers: [AuthService, AuthGuard, UserService,
+    { provide: MAT_DATE_LOCALE, useValue: "fr-FR" },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },
+    { provide: DateAdapter, useClass: MomentUtcDateAdapter },
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

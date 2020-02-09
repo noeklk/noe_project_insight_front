@@ -23,10 +23,7 @@ export class AuthService {
   }
 
   CheckToken(): Promise<HttpResponse<MessageModel>> {
-    console.log(this._tokenCheckUrl);
-
     const res = this.http.get<MessageModel>(this._tokenCheckUrl, { headers: this.GenerateHeader(), observe: "response" }).toPromise();
-
     return res;
   }
 
@@ -65,6 +62,7 @@ export class AuthService {
     localStorage.removeItem(this._tokenName);
     localStorage.removeItem(this.home.userIdName);
     this.isLoggedIn = false;
+    console.log("Déconnecté!");
     this.myRoute.navigate(["login"]);
   }
 }

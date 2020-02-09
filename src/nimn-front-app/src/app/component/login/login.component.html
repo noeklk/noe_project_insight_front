@@ -1,13 +1,15 @@
-<form [formGroup]="form" (ngSubmit)="login()" class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Pseudo</mat-label>
-      <input matInput formControlName="pseudo">
-    </mat-form-field>
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="login()" class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Pseudo</mat-label>
+        <input matInput formControlName="pseudo">
+      </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Mot de passe</mat-label>
-        <input matInput formControlName="password">
-    </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput formControlName="password">
+      </mat-form-field>
 
-    <button mat-raised-button type="submit" color="primary">Login</button>
-</form>
+      <button mat-raised-button type="submit" color="primary">Login</button>
+  </form>
+</div>
