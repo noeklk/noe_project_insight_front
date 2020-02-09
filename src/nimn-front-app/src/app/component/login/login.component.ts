@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   form;
   userDto = new UserDto();
   constructor(private fb: FormBuilder, private myRoute: Router, private auth: AuthService, private userService: UserService,
-              private home: HomeService) {
+    private home: HomeService) {
     this.form = fb.group({
       pseudo: ["", [Validators.required]],
       password: ["", Validators.required]
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
         this.myRoute.navigate(["home"]);
         console.log("Connecté!");
       }).catch((e: HttpErrorResponse) => {
-        console.log(e);
         alert(`${e.error.message}`);
       });
     }
