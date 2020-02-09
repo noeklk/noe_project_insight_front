@@ -46,14 +46,14 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       if (!this.HasToken()) {
         this.myRoute.navigate(["login"]);
-        console.log("no, you dont have any token, maybe log first :) ?");
+        console.log("you dont have any token, do try to log in first");
       } else {
         this.CheckToken().then((res: HttpResponse<MessageModel>) => {
           console.log("nice you have a valid token, come on in !");
           this.isLoggedIn = true;
           return resolve(true);
         }).catch((error: HttpErrorResponse) => {
-          console.log("what are you doing here ? please login again :)");
+          console.log("your token is no valid anymore, please reconnect");
           this.Logout();
           return reject(false);
         });

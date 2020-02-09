@@ -13,7 +13,8 @@ export const environment = {
       get_all_users: "users/"
     },
     module: {
-      get_all_modules: "modules/"
+      get_all_modules: "modules/",
+      delete_a_module_by_id: "modules/"
     },
     note: {
       get_all_notes: "notes/"

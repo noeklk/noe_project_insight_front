@@ -45,28 +45,40 @@ export class HomeComponent implements OnInit {
       throw e;
     });
 
-    this.sessions = await this.sessionService.GetAllSessions().then((res) => {
-      return res.body;
-    }).catch((e) => {
-      throw e;
+    const admin: Promise<boolean> = new Promise((resolve, reject) => {
+      if (this.user.role === "admin") {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
     });
 
-    this.modules = await this.moduleService.GetAllModules().then((res) => {
-      return res.body;
-    }).catch((e) => {
-      throw e;
-    });
+    if (await admin) {
+      this.sessions = await this.sessionService.GetAllSessions().then((res) => {
+        return res.body;
+      }).catch((e) => {
+        throw e;
+      });
 
-    this.notes = await this.noteService.GetAllNotes().then((res) => {
-      return res.body;
-    }).catch((e) => {
-      throw e;
-    });
+      this.modules = await this.moduleService.GetAllModules().then((res) => {
+        return res.body;
+      }).catch((e) => {
+        throw e;
+      });
 
-    this.users = await this.userService.GetAllUsers().then((res) => {
-      return res.body;
-    }).catch((e) => {
-      throw e;
-    });
+      this.notes = await this.noteService.GetAllNotes().then((res) => {
+        return res.body;
+      }).catch((e) => {
+        throw e;
+      });
+
+      this.users = await this.userService.GetAllUsers().then((res) => {
+        return res.body;
+      }).catch((e) => {
+        throw e;
+      });
+    } else {
+      console.log("guest");
+    }
   }
 }

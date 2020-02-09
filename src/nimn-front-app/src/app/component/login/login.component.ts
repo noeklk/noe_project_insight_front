@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private home: HomeService) {
     this.form = fb.group({
       pseudo: ["", [Validators.required]],
-      password: ["", Validators.required]
+      password: [""]
     });
   }
 
