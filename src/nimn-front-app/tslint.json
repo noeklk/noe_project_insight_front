@@ -1,6 +1,10 @@
 {
   "extends": "tslint:recommended",
   "rules": {
+    "variable-name": {
+      "options": ["allow-snake-case", "allow-leading-underscore"]
+    },
+    "align": false,
     "array-type": false,
     "arrow-parens": false,
     "deprecation": {

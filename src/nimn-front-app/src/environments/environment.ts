@@ -3,7 +3,26 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  nodejs_api_host: `http://${window.location.hostname}:3000/`,
+
+  nodejs_api_route: {
+    user: {
+      login: "users/login/",
+      get_a_user_by_id: "users/",
+      get_all_users: "users/"
+    },
+    module: {
+      get_all_modules: "modules/"
+    },
+    note: {
+      get_all_notes: "notes/"
+    },
+    session: {
+      get_all_sessions: "sessions/"
+    },
+    token_check: "token/"
+  }
 };
 
 /*

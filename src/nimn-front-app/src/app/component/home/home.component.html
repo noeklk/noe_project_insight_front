@@ -1,0 +1,24 @@
+<div *ngIf="user.pseudo">
+    <p>Bonjour {{ user.pseudo }}</p>
+    <ul>
+        <li>nom: {{ user.nom }}</li>
+        <li>prenom: {{ user.prenom }}</li>
+    </ul>
+</div>
+
+<div *ngIf="user.role=='admin'">
+    <mat-button-toggle-group (change)="view=group.value" #group="matButtonToggleGroup">
+        <mat-button-toggle  value="session">Sessions</mat-button-toggle>
+        <mat-button-toggle value="module">Modules</mat-button-toggle>
+        <mat-button-toggle value="note">Notes</mat-button-toggle>
+        <mat-button-toggle value="user">Utilisateurs</mat-button-toggle>
+     </mat-button-toggle-group>
+ 
+    <app-session *ngIf="view=='session'" [sessions]=sessions></app-session>
+    <app-module *ngIf="view=='module'" [modules]=modules></app-module>
+    <app-note *ngIf="view=='note'" [notes]=notes></app-note>
+    <app-user *ngIf="view=='user'" [users]=users></app-user>
+</div>
+
+
+
