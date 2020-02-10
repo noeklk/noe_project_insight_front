@@ -37,7 +37,6 @@ export class SessionComponent implements OnInit {
 
 
     const closed = await dialogRef.afterClosed().toPromise().then((res: SessionDto) => {
-      console.log("the dialog was closed");
       if (res) {
         this.update_session = res;
         return true;

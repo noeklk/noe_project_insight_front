@@ -33,7 +33,10 @@
 
       <ng-container matColumnDef="cmd">
         <th mat-header-cell *matHeaderCellDef> Commandes </th>
-        <td mat-cell *matCellDef="let element"> <button (click)="DeleteAModuleById(element._id)" mat-icon-button><mat-icon>delete</mat-icon></button> </td>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="DeleteAModuleById(element._id)" mat-icon-button matTooltip="Permet la suppression de ce module"><mat-icon>delete</mat-icon></button>
+          <button (click)="GetNotesAverageByModuleId(element._id)" mat-icon-button matTooltip="Permet d'avoir la note moyenne de ce module"><mat-icon>speaker_notes</mat-icon></button>
+        </td>
       </ng-container>
     
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -36,7 +36,6 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatInput
 } from "@angular/material";
 import { A11yModule } from "@angular/cdk/a11y";
 import { BidiModule } from "@angular/cdk/bidi";
