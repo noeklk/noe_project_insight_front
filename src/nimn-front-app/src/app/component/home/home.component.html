@@ -29,7 +29,7 @@
             <mat-button-toggle value="note" (click)="GetAllNotes()">Notes</mat-button-toggle>
             <mat-button-toggle value="user" (click)="GetAllUsers()">Utilisateurs</mat-button-toggle>
         </mat-button-toggle-group>
-    
+
         <app-session *ngIf="view=='session'" [sessions]=sessions></app-session>
         <app-module *ngIf="view=='module'" [modules]=modules></app-module>
         <app-note *ngIf="view=='note'" [notes]=notes></app-note>
