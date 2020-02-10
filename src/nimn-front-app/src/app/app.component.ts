@@ -8,9 +8,6 @@ import { Component, OnInit } from "@angular/core";
 export class AppComponent implements OnInit {
   title = "nimn-front-app";
   ngOnInit() {
-    // CHECK DU TOKEN ON REFRESH
-    // CREER LE CHECK DANS LE BACK ET UTILISER CETTE ROUTE DANS NGONINIT DE APPCOMPONENT
-    // SI TOKEN = VALIDER ALORS REDIRIGER SUR MON PROFIL AVEC NOM PRENOM PSEUDO, SESSIONS ET MODULES
   }
 
 }

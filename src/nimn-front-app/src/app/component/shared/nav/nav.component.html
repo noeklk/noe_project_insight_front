@@ -1,5 +1,5 @@
 <p>
-    <button mat-raised-button routerLink="/home">Home</button>
-    <button mat-raised-button *ngIf="!auth.isLoggedIn" routerLink="/login">Login</button>
-    <button mat-raised-button *ngIf="auth.isLoggedIn" (click)="auth.Logout()">Logout</button> 
+    <button mat-raised-button routerLink="/home">Accueil</button>
+    <button mat-raised-button *ngIf="!auth.isLoggedIn" routerLink="/login">Connection</button>
+    <button mat-raised-button *ngIf="auth.isLoggedIn" (click)="auth.Logout()">Déconnection</button> 
 </p>

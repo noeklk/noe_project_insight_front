@@ -35,9 +35,7 @@ export class SessionComponent implements OnInit {
       data: { nom_promo: this.update_session.nom_promo, annee_promo: this.update_session.annee_promo }
     });
 
-
     const closed = await dialogRef.afterClosed().toPromise().then((res: SessionDto) => {
-      console.log("the dialog was closed");
       if (res) {
         this.update_session = res;
         return true;
@@ -70,18 +68,21 @@ export class SessionComponent implements OnInit {
   async DeleteASessionById(id: string) {
     if (confirm("Etes vous sûr de vouloir supprimer cette session ?")) {
 
-      alert(await this.sessionService.DeleteASessionById(id).then((res) => {
-        return res.body.message;
+      const hasDeleted = await this.sessionService.DeleteASessionById(id).then((res) => {
+        alert(res.body.message);
+        return true;
       }).catch((e) => {
         alert(e.error.message);
-        throw e;
-      }));
-
-      this.home.sessions = await this.sessionService.GetAllSessions().then((res) => {
-        return res.body;
-      }).catch((e) => {
-        throw e;
+        return false;
       });
+
+      if (hasDeleted) {
+        this.home.sessions = await this.sessionService.GetAllSessions().then((res) => {
+          return res.body;
+        }).catch((e) => {
+          throw e;
+        });
+      }
     }
   }
 }

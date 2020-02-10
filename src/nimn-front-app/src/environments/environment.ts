@@ -8,6 +8,7 @@ export const environment = {
 
   nodejs_api_route: {
     user: {
+      register: "users/register/",
       login: "users/login/",
 
       get_a_user_by_id: "users/",
@@ -23,6 +24,7 @@ export const environment = {
     note: {
       get_all_notes: "notes/",
       get_all_notes_by_student_id: "etudiants/",
+      get_notes_average_by_module_id: "modules/",
 
       delete_a_note_by_id: "notes/"
     },

@@ -1,3 +1,4 @@
+import { UserCreateComponent } from "./../user/user-create/user-create.component";
 import { SessionCreateComponent } from "./../session/session-create/session-create.component";
 import { NoteService } from "./../../service/note.service";
 import { NoteDto } from "./../../dto/note";
@@ -29,12 +30,13 @@ export class HomeComponent implements OnInit {
   etudiant_notes: NoteDto[];
 
   new_session: SessionDto;
+  new_user: UserDto;
 
   view: string;
 
   isAdmin = false;
 
-  constructor(private home: HomeService,
+  constructor(private homeService: HomeService,
     private userService: UserService,
     private sessionService: SessionService,
     private moduleService: ModuleService,
@@ -44,11 +46,10 @@ export class HomeComponent implements OnInit {
   async CreateASession() {
     const dialogRef = this.dialog.open(SessionCreateComponent, {
       width: "300px",
-      data: { nom_promo: "", annee_promo: "" }
+      data: { }
     });
 
     const closed = await dialogRef.afterClosed().toPromise().then((res: SessionDto) => {
-      console.log("the dialog was closed");
       if (res.annee_promo && res.nom_promo) {
         this.new_session = res;
         return true;
@@ -70,6 +71,42 @@ export class HomeComponent implements OnInit {
 
       if (hasUpdated) {
         this.sessions = await this.sessionService.GetAllSessions().then((res) => {
+          return res.body;
+        }).catch((e) => {
+          throw e;
+        });
+      }
+    }
+  }
+
+  async CreateAUser() {
+    const dialogRef = this.dialog.open(UserCreateComponent, {
+      width: "300px",
+      data: { }
+    });
+
+    const closed = await dialogRef.afterClosed().toPromise().then((res: UserDto) => {
+      if (res.nom && res.prenom && res.password && res.role) {
+        this.new_user = res;
+        return true;
+      } else {
+        return false;
+      }
+    }).catch((e) => {
+      return false;
+    });
+
+    if (closed) {
+      const hasUpdated = await this.userService.UserRegister(this.new_user).then((result) => {
+        alert(result.body.message);
+        return true;
+      }).catch((e) => {
+        alert(e.error.message);
+        return false;
+      });
+
+      if (hasUpdated) {
+        this.users = await this.userService.GetAllUsers().then((res) => {
           return res.body;
         }).catch((e) => {
           throw e;
@@ -133,27 +170,14 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    const userId = await this.home.GetUserId();
+    const userId = await this.homeService.GetUserId();
 
     this.user = await this.GetAUserByid(userId);
 
-    const admin: Promise<boolean> = new Promise((resolve, reject) => {
-      if (this.user.role === "admin") {
-        resolve(true);
-      } else {
-        resolve(false);
-      }
-    });
+    const admin = this.user.role === "admin";
 
-    if (await admin) {
+    if (admin) {
       this.isAdmin = true;
-      // await this.GetAllSessions();
-
-      // await this.GetAllModules();
-
-      // await this.GetAllNotes();
-
-      // await this.GetAllUsers();
     } else {
       console.log("guest area");
     }
