@@ -24,6 +24,7 @@ import { MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from "@angular/materia
 import { MomentUtcDateAdapter } from "./helper/moment-utc-date-adapter";
 import { APP_DATE_FORMATS } from "./app.config";
 import { DatePipe } from "@angular/common";
+import { UserCreateComponent } from "./component/user/user-create/user-create.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DatePipe } from "@angular/common";
     SignupComponent,
     HomeComponent,
     SessionEditComponent,
-    SessionCreateComponent
+    SessionCreateComponent,
+    UserCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { DatePipe } from "@angular/common";
     FormsModule,
     ReactiveFormsModule
   ],
-  entryComponents: [SessionEditComponent, SessionCreateComponent],
+  entryComponents: [SessionEditComponent, SessionCreateComponent, UserCreateComponent],
   providers: [AuthService, AuthGuard, UserService,
     { provide: MAT_DATE_LOCALE, useValue: "fr-FR" },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS },

@@ -8,6 +8,7 @@ export const environment = {
 
   nodejs_api_route: {
     user: {
+      register: "users/register/",
       login: "users/login/",
 
       get_a_user_by_id: "users/",

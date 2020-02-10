@@ -42,7 +42,6 @@ export class SessionService {
 
   DeleteASessionById(id: string): Promise<HttpResponse<MessageModel>> {
     const paramUrl = `${this._deleteASessionById}${id}`;
-
     const res = this.http.delete<MessageModel>(paramUrl, { headers: this.auth.GenerateHeader(), observe: "response" }).toPromise();
     return res;
   }

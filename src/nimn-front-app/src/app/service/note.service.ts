@@ -15,7 +15,6 @@ export class NoteService {
 
   private _deleteANoteByIdUrl = `${environment.nodejs_api_host}${environment.nodejs_api_route.note.delete_a_note_by_id}`;
 
-
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   GetAllNotes(): Promise<HttpResponse<NoteDto[]>> {

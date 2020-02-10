@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Utilisateur</h1>
+<div mat-dialog-content>
+  <p>Création d'un utilisateur</p>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nom</mat-label>
+    <input matInput [(ngModel)]="data.nom">
+  </mat-form-field> 
+
+   <mat-form-field appearance="fill">
+    <mat-label>Prénom</mat-label>
+    <input matInput [(ngModel)]="data.prenom">
+  </mat-form-field> 
+
+  <mat-form-field appearance="fill">
+    <mat-label>Role</mat-label>
+    <mat-select [(ngModel)]="data.role">
+      <mat-option *ngFor="let role of roles" [value]="role.value">
+        {{role.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Pseudo</mat-label>
+    <input matInput [(ngModel)]="data.pseudo">
+  </mat-form-field> 
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" [(ngModel)]="data.password">
+  </mat-form-field> 
+
+  <mat-form-field appearance="fill">
+    <mat-label>Code admin</mat-label>
+    <input matInput type="password" [(ngModel)]="data.code_admin">
+  </mat-form-field> 
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" color="warn">Annuler</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial color="primary">Créer</button>
+</div>
