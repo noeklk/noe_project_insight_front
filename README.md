@@ -8,7 +8,7 @@ This APP allow :
   + administrators to create, read, update and delete sessions or modules or  users. They can see the average sessions scores too.
 
 # Instructions
-  1. You can either clone the project or download the latest relase here : `https://github.com/noeklk/noe_project_insight_front/releases`
+  1. You can either clone the project or download the latest release here : `https://github.com/noeklk/noe_project_insight_front/releases`
   2. Install docker & docker-compose
   2. Position yourself at the root of the project `cd noe_project_insight_front`
   3. `docker-compose up` (for logs) or with `-d` option in detached mode
